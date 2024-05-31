@@ -184,7 +184,8 @@
         },
         "stream": {
           "type": "string",
-          "example": "year"
+          "example": "year",
+          "description" : "Use the examples above" 
         }
       },
       "xml": {

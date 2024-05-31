@@ -33,6 +33,7 @@ teacherSchema.methods.generateAuthToken = function(){
 
 const TeacherModel = mongoose.model("Teacher", teacherSchema);
 
+//validating a user
 function validateUser(teacher){
     const schema = {
         name: Joi.string().required(),

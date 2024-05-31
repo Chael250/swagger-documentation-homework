@@ -37,7 +37,7 @@ app.post("/", authMiddleware,async (req, res) => {
   });
 
   await newStudent.save();
-
+  //sending a response to the user
   res.send(newStudent);
 });
 

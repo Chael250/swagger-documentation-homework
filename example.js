@@ -107,7 +107,7 @@ app.delete("/students:id", async (req, res) => {
   const studentToDelete = await UserModel.findOneAndDelete(req.params.id);
   res.send(studentToDelete);
 });
-//----------------------------------
+//starting a server
 app.listen(4650, () => {
   debug("Server is running successfully on port 4650");
   app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

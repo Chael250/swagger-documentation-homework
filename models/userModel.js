@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require('express');
 const Joi = require("joi")
 
+//login schema
 const loginSchema = new mongoose.Schema({
     name:{
         type:String,

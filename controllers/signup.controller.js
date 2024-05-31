@@ -6,6 +6,7 @@ const {UserModel,validate} = require("../models/userModel")
 const bcrypt = require("bcrypt")
 const _= require("lodash")
 
+//adding a new user
 user.post("/", async(req,res) => {
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message)

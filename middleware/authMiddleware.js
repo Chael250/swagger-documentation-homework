@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const debug = require("debug")
 
-function authMiddleware(req,res,next){   //Middleware for authorization not authenticatation
+//Middleware for authorization not authenticatation
+function authMiddleware(req,res,next){   
     const token = req.header("x-auth-token");
     if(!token) return res.status(401).send("No token provided...")
 

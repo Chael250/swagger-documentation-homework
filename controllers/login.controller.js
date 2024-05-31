@@ -5,6 +5,7 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 
+//middlewares
 auth.use(express.json())
 
 auth.post("/", async (req,res) => {

@@ -18,6 +18,7 @@ mongoose
   .then(() => console.log("Connected to mongoDB..."))
   .catch((err) => console.log("Couldn't connect to db...", err));
 
+//middlewares
 app.use("/api/students", route);
 app.use("/api/teacher", teacher);
 app.use("/api/auth", auth);

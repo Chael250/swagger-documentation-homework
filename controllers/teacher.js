@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 const {TeacherModel,validate} = require("../models/teacherModel")
 teacher.use(express.json())
 
+//adding a teacher in DB
 teacher.post("/", async(req,res) => {
     const { error } = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message)
@@ -20,7 +21,7 @@ teacher.post("/", async(req,res) => {
        password: req.body.password
     })
     const salt = await bcrypt.genSalt(10);
-    newUser.password = await bcrypt.hash(req.body.password,salt)
+    newUser.password = await bcrypt.hash(req.body.password,salt);
     
     await newUser.save()
     const token = newUser.generateAuthToken()
