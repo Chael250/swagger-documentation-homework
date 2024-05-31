@@ -1,0 +1,202 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Student management app",
+    "version": "1.0.0",
+    "title": "Student app",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "ganzac784@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:2500",
+  "tags": [
+    {
+      "name": "Learners",
+      "description": "Description of learners",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/students": {
+      "post": {
+        "tags": ["Learner"],
+        "summary": "API to create a new student in the DB",
+        "description": "",
+        "operationId": "Add new student",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "names",
+            "description": "student who  needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/student"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/student"
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["student"],
+        "summary": "API to get student in the DB",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "find student",
+        "produces": ["application/json", "application/xml"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/student"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/students/{id}": {
+      "put": {
+        "tags": ["student"],
+        "summary": "API to edit a student in the DB",
+        "description": "",
+        "operationId": "edit student",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "student who  needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/student"
+            }
+          },
+          {
+            "in": "body",
+            "name": "name",
+            "stream": "stream",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/student"
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["student"],
+        "summary": "API to delete a student in the DB",
+        "description": "",
+        "operationId": "delete student",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of the student to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/student"
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "stream": {
+          "type": "string"
+        }
+      }
+    },
+    "student": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Chael"
+        },
+        "stream": {
+          "type": "string",
+          "example": "year"
+        }
+      },
+      "xml": {
+        "name": "student"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "in": "header"
+    }
+  }
+}
